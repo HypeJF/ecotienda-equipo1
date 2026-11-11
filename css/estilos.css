@@ -1,0 +1,250 @@
+:root {
+  /* pseudoclase que selecciona todo de raiz (html) */
+  --color-principal: #122494;
+  --color-acento: #0b4d8a;
+  --color-suave: #DDEBDD;
+  --color-fondo: #F4F7F2;
+}
+
+
+/* importando una fuente de forma local*/
+@font-face {
+  font-family: 'Oswald';
+  src: url('../fonts/Owald/Oswald-VariableFont_wght.tff') format('truetype');
+  font-weight: 200 700; 
+  font-style: normal;
+}
+
+/* seccion del body o cuerpo, selector de etiqueta*/
+body {
+  font-family: "Oswald", Arial, sans-serif;
+  background-color: var(--color-fondo);
+  color: #1F2933;
+
+  /* imagen personalizada para que se vea mejor */
+  background-image: url('../images/fondo.jpg');
+  background-repeat: repeat;
+  background-size: auto;
+}
+
+/* seccion de los parrafos, selector de etiqueta agrupados */
+h1, h2, h3 {
+  color: #181b9e;
+  font-weight: 700;
+}
+
+/* Selector de clase (lleva punto), de la cabecera*/
+.encabezado {
+  background-color: #122494;
+  /*imagen para que se vea mas bonito */
+  background-image: url(../images/encabezado_fondo.jpg);
+  background-repeat: repeat;
+  background-size: auto;
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px solid transparent;
+  border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.364);
+  text-align: center;
+  font-weight: bold;
+}
+
+/* selector de etiqueta descendiente de clase encabezado*/
+.encabezado h1 {
+  color: white;
+}
+
+.encabezado p {
+  color: #E3F2E3;
+}
+
+
+/* selector de id, para una sección especifica*/
+#intro {
+  background-color: white;
+  padding: 16px 24px;
+  margin-bottom: 24px;
+  border: 1px solid #0b4d8a;;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.364);
+}
+
+#intro > h2 {
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* selector de hijo, una etiqueta especifica dentro de una clase */
+.menu > a {
+  background-color: #18142e;
+  font-style: italic;
+  color: white;
+  text-decoration: none;
+  padding: 6px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  transition: background-color 0.3s, color 0.3s;
+  /* transicion para cambiar ligeramente el color al pasar el mouse*/
+}
+
+/* selector de pseudoclase en selector de hijo, a su vez, en selector de clase, la recolorea al pasar el cursor*/
+.menu > a:hover {
+  background-color: white;
+  color: #160768;
+}
+
+/* selector de pseudoclase y etc, lo pinta cuando haces clic*/
+.menu > a:focus {
+  outline: 3px solid #0c59dd;
+}
+
+#zona-tarjetas > h2{
+text-align: center;
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* transicion presente para que crezcan las tarjetas un poco*/
+.tarjeta {
+  background-color: white;
+  border: 1px solid #DDEBDD;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.364);
+  transition: transform 0.3s;
+}
+
+/* modificacion del boton Carrito */
+.tarjeta .btn-primary {
+  margin: 16px auto 0;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  width: 85%;
+}
+
+.tarjeta:hover {
+  transform: translateY(-6px);
+}
+
+/* selector de pseudo-clase: selecciona el primer hijo de la clase */
+.tarjeta:first-child {
+  border: 1px solid #3941d9;
+}
+
+/* selec. de pseudoclase: selecciona el hijo n (cualquiera que no sea el primero)*/
+.tarjeta p:nth-child(2) {
+  min-height: 48px;
+}
+
+.precio {
+  text-align: center;
+  color: #181b9e;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.categoria {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background-color: #dde1eb;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.ahorro {
+  color: #181b9e;;
+  font-weight: 700;
+}
+
+.filtros {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filtro {
+  border: 2px solid rgba(1, 0, 0, 0.5);
+  background-color: rgb(148, 146, 218);
+  color: #18142e;
+  padding: 6px 16px;
+  border-radius: 999px;
+  transition: background-color 0.3s;
+}
+
+.filtro:hover, .filtro.activo {
+  background-color: #18142e;
+  color: white;
+}
+
+.catalogo {
+  display: grid;
+  grid-template-columns: 75% 23%;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+}
+
+#carrito {
+  background-color: white;
+  border: 2px solid #3941d9;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  position: sticky;
+  top: 16px;
+}
+
+.productos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* selector de atributo, basicamente agrupa todos los _blank (solo hay uno)*/
+a[target=_blank] {
+  color: #181b9e;;
+  font-weight: 700;
+}
+
+.pie {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid #DDEBDD;
+  color: #52606D;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--color-principal);
+  --bs-btn-border-color: var(--color-principal);
+  --bs-btn-hover-bg: var(--color-acento);
+  --bs-btn-hover-border-color: var(--color-acento);
+  --bs-btn-hover-color: #0d0d0e;
+}
+
+@media (max-width: 992px) {
+  .tarjetas { grid-template-columns: repeat(2, 1fr); }
+  .catalogo { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+  .encabezado { padding: 16px; }
+  .encabezado h1 { font-size: 1.6rem; }
+  .menu { flex-direction: column; }
+  .tarjetas { grid-template-columns: 1fr; }
+}
