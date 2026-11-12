@@ -4,48 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo · AhorraPlus</title>
+    <!-- CSS de Bootstrap y Bootstrap Icons para el icono del carrito -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
     <script src="js/tienda.js" defer></script>
 </head>
 <body class="container py-3">
-    <header class="encabezado">
-        <h1>Catálogo</h1>
-        <p>Cada producto dice cuánto le ahorra al mes, con una tarifa de 950 COP/kWh.</p>
-        <nav class="menu">
+    <!-- Encabezado con flexbox para alinear el menú y el carrito a la derecha -->
+    <header class="encabezado d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <h1 class="mb-1">Catálogo</h1>
+            <p class="mb-0">Cada producto dice cuánto le ahorra al mes, con una tarifa de 950 COP/kWh.</p>
+        </div>
+        
+        <nav class="menu d-flex align-items-center gap-3">
             <a href="index.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
+            <a href="catalogo.html" class="activo">Catálogo</a>
             <a href="nosotros.html">Nosotros</a>
             <a href="contacto.html">Contacto</a>
+            
+            <!-- Botón del carrito en el menú superior -->
+            <button class="btn btn-outline-dark d-flex align-items-center ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" aria-controls="carritoOffcanvas">
+                <i class="bi bi-cart3 fs-5 me-2"></i>
+                <span>Carrito</span>
+                <!-- Opcional: Puedes enlazar este badge a tu JS para mostrar la cantidad -->
+                <span class="badge bg-dark text-white ms-2 rounded-pill" id="contador-carrito">0</span>
+            </button>
         </nav>
     </header>
 
     <main>
-        <div class="filtros">
-            <button class="filtro activo" data-categoria="todas">Todas</button>
-            <button class="filtro" data-categoria="iluminacion">Iluminación</button>
-            <button class="filtro" data-categoria="electrodomesticos">Electrodomésticos</button>
-            <button class="filtro" data-categoria="solar">Energía solar</button>
-        </div>
-
+        <!-- La barra de filtros se mantiene arriba ocupando el ancho completo -->
+        <div class="filtros mb-4">
+    <button class="filtro activo" data-categoria="todas">Todas</button>
+    <button class="filtro" data-categoria="iluminacion">Iluminación</button>
+    <button class="filtro" data-categoria="electrodomesticos">Electrodomésticos</button>
+    <button class="filtro" data-categoria="solar">Energía solar</button>
+    <!-- Los dos botones nuevos -->
+    <button class="filtro" data-categoria="domotica">Domótica</button>
+    <button class="filtro" data-categoria="cocina">Cocina Eficiente</button>
+</div>
+        
+        <!-- El catálogo ahora ocupa todo el ancho disponible -->
         <div class="catalogo">
             <div id="productos" class="tarjetas"></div>
-            <aside id="carrito">
-                <h2>Carrito</h2>
-                <ul id="lista-carrito"></ul>
-                <p id="total"></p>
-                <p id="ahorro"></p>
-                <button id="vaciar" class="btn btn-outline-secondary btn-sm">Vaciar carrito</button>
-            </aside>
         </div>
     </main>
 
-    <footer class="pie">
+    <!-- Contenedor del Carrito convertido en Offcanvas de Bootstrap -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas" aria-labelledby="carritoOffcanvasLabel">
+        <div class="offcanvas-header">
+            <h2 class="fs-4 text-primary fw-bold mb-0" id="carritoOffcanvasLabel">Tu Carrito</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <!-- Mantenemos el aside con sus IDs intactos para que js/tienda.js no se rompa -->
+            <aside id="carrito" class="flex-grow-1 d-flex flex-column">
+                <ul id="lista-carrito" class="ps-0 mb-3 flex-grow-1" style="list-style: none;"></ul>
+                <div class="mt-auto border-top pt-3">
+                    <p id="total" class="fw-bold mb-1"></p>
+                    <p id="ahorro" class="text-success fw-bold"></p>
+                    <button id="vaciar" class="btn btn-outline-secondary btn-sm w-100 mt-2">Vaciar carrito</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="pie text-center mt-5 border-top pt-3">
         <p>Los productos y sus precios son de ejemplo.</p>
         <p>Ingeniería Web I · IU Digital de Antioquia · 2026-2</p>
     </footer>
+
+    <!-- Script de Bootstrap necesario para que el panel del carrito se pueda abrir y cerrar -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -4,253 +4,181 @@
 // =============================================================
 
 // --- CONSTANTES: valores que no cambian. Se declaran con const ---
-// Se escriben en MAYUSCULAS para que se note que son fijas
 const TARIFA = 950;            // lo que cuesta 1 kWh, en pesos (COP). Tarifa de ejemplo
-const DIAS_MES = 30;           // dias de un mes: para pasar el ahorro de un dia al de un mes
+const DIAS_MES = 30;           // dias de un mes
 
 // --- ARREGLO DE OBJETOS LITERALES: la lista de productos ---
-// [ ] = un ARREGLO: una lista de elementos, separados por comas
-// { } = un OBJETO: un grupo de datos con nombre (propiedad: valor)
-// Cada producto es un objeto. Sus datos se leen con un punto: producto.precio
-// wattsAntes   = cuanto gasta el equipo VIEJO que se reemplaza (en vatios, W)
-// wattsDespues = cuanto gasta el equipo NUEVO (0 si no gasta energia de la red)
-// horasDia     = cuantas horas al dia se usa
 const productos = [
-    { id: 1, nombre: "Bombillo LED 9 W", categoria: "iluminacion", precio: 8900,
-      wattsAntes: 60, wattsDespues: 9, horasDia: 5 },
-    { id: 2, nombre: "Panel LED 18 W", categoria: "iluminacion", precio: 35000,
-      wattsAntes: 40, wattsDespues: 18, horasDia: 8 },
-    { id: 3, nombre: "Reflector LED 50 W", categoria: "iluminacion", precio: 59000,
-      wattsAntes: 250, wattsDespues: 50, horasDia: 6 },
-    { id: 4, nombre: "Nevera eficiente", categoria: "electrodomesticos", precio: 1890000,
-      wattsAntes: 80, wattsDespues: 40, horasDia: 24 },
-    { id: 5, nombre: "Aire acondicionado inverter", categoria: "electrodomesticos", precio: 2100000,
-      wattsAntes: 1400, wattsDespues: 900, horasDia: 6 },
-    { id: 6, nombre: "Regleta con apagado automático", categoria: "electrodomesticos", precio: 65000,
-      wattsAntes: 15, wattsDespues: 0, horasDia: 20 },
-    { id: 7, nombre: "Calentador solar de agua", categoria: "solar", precio: 1200000,
-      wattsAntes: 3500, wattsDespues: 0, horasDia: 0.5 },
-    { id: 8, nombre: "Kit de panel solar 550 W", categoria: "solar", precio: 2400000,
-      wattsAntes: 550, wattsDespues: 0, horasDia: 4.5 }
+    // --- ILUMINACIÓN ---
+    { id: 1, nombre: "Bombillo LED 9W", precio: 8500, categoria: "iluminacion", descripcion: "Reemplaza al tradicional de 60W. Vida útil de 25,000 horas, ideal para el hogar.", ahorro: 7200, imagen: "https://via.placeholder.com/300x200?text=Bombillo+LED+9W" },
+    { id: 2, nombre: "Panel LED Plafón 18W", precio: 22000, categoria: "iluminacion", descripcion: "Luz blanca de incrustar. Excelente distribución térmica e iluminación uniforme.", ahorro: 12500, imagen: "https://via.placeholder.com/300x200?text=Panel+LED+18W" },
+    { id: 3, nombre: "Reflector LED 50W Exterior", precio: 45000, categoria: "iluminacion", descripcion: "Protección IP66 contra agua. Reemplaza reflectores halógenos de 300W.", ahorro: 35600, imagen: "https://via.placeholder.com/300x200?text=Reflector+LED+50W" },
+    { id: 4, nombre: "Cinta LED 5 Metros 12V", precio: 35000, categoria: "iluminacion", descripcion: "Iluminación decorativa de bajísimo consumo. Incluye adaptador eficiente.", ahorro: 5400, imagen: "https://via.placeholder.com/300x200?text=Cinta+LED+5m" },
+    { id: 5, nombre: "Tubo LED 18W T8", precio: 15000, categoria: "iluminacion", descripcion: "Reemplazo directo para tubos fluorescentes de 40W sin necesidad de balasto.", ahorro: 10400, imagen: "https://via.placeholder.com/300x200?text=Tubo+LED+18W" },
+    { id: 6, nombre: "Bombillo Inteligente WiFi 10W", precio: 32000, categoria: "iluminacion", descripcion: "Control por app o voz (Alexa/Google). Apágalo desde el celular si lo olvidas encendido.", ahorro: 8100, imagen: "https://via.placeholder.com/300x200?text=Bombillo+WiFi" },
+    { id: 7, nombre: "Lámpara de Escritorio LED", precio: 55000, categoria: "iluminacion", descripcion: "Con batería recargable, no necesita estar conectada todo el día. 3 niveles de luz.", ahorro: 4200, imagen: "https://via.placeholder.com/300x200?text=Lampara+Escritorio" },
+
+    // --- ELECTRODOMÉSTICOS ---
+    { id: 8, nombre: "Nevera Inverter 300L", precio: 1850000, categoria: "electrodomesticos", descripcion: "Compresor Digital Inverter que ajusta la velocidad según la demanda de enfriamiento.", ahorro: 45000, imagen: "https://via.placeholder.com/300x200?text=Nevera+Inverter" },
+    { id: 9, nombre: "Lavadora Carga Frontal 15Kg", precio: 2100000, categoria: "electrodomesticos", descripcion: "Motor Inverter Direct Drive. Usa menos agua y reduce el consumo eléctrico por ciclo.", ahorro: 28500, imagen: "https://via.placeholder.com/300x200?text=Lavadora+Frontal" },
+    { id: 10, nombre: "Aire Acondicionado Inverter 12000 BTU", precio: 1650000, categoria: "electrodomesticos", descripcion: "Mantiene la temperatura estable sin apagar y prender el compresor. Etiqueta A.", ahorro: 85000, imagen: "https://via.placeholder.com/300x200?text=Aire+Acondicionado" },
+    { id: 11, nombre: "Televisor Smart LED Eco 50\"", precio: 1450000, categoria: "electrodomesticos", descripcion: "Modo de ahorro de energía automático y pantalla de bajo consumo.", ahorro: 18000, imagen: "https://via.placeholder.com/300x200?text=TV+Eco+50" },
+    { id: 12, nombre: "Ventilador Pedestal Motor DC", precio: 220000, categoria: "electrodomesticos", descripcion: "Motor de corriente continua que consume un 60% menos que un ventilador tradicional.", ahorro: 12000, imagen: "https://via.placeholder.com/300x200?text=Ventilador+DC" },
+    { id: 13, nombre: "Horno Microondas Inverter", precio: 480000, categoria: "electrodomesticos", descripcion: "Calienta de manera constante y eficiente sin picos altos de energía.", ahorro: 9500, imagen: "https://via.placeholder.com/300x200?text=Microondas+Inverter" },
+    { id: 14, nombre: "Freidora de Aire Eficiencia A", precio: 350000, categoria: "electrodomesticos", descripcion: "Resistencia optimizada que alcanza la temperatura más rápido con menos vatios.", ahorro: 15200, imagen: "https://via.placeholder.com/300x200?text=Air+Fryer" },
+    { id: 15, nombre: "Licuadora de Bajo Consumo", precio: 190000, categoria: "electrodomesticos", descripcion: "Motor optimizado para triturar hielo en segundos sin sobrecargar la red eléctrica.", ahorro: 3000, imagen: "https://via.placeholder.com/300x200?text=Licuadora+Eficiente" },
+
+    // --- ENERGÍA SOLAR ---
+    { id: 16, nombre: "Panel Solar Policristalino 150W", precio: 320000, categoria: "solar", descripcion: "Ideal para iniciar tu sistema aislado. Genera energía limpia durante todo el día.", ahorro: 25000, imagen: "https://via.placeholder.com/300x200?text=Panel+Solar+150W" },
+    { id: 17, nombre: "Reflector Solar 100W con Sensor", precio: 125000, categoria: "solar", descripcion: "Cero consumo eléctrico. Batería de litio integrada y panel independiente.", ahorro: 18000, imagen: "https://via.placeholder.com/300x200?text=Reflector+Solar" },
+    { id: 18, nombre: "Kit Iluminación Solar Portátil", precio: 180000, categoria: "solar", descripcion: "Incluye mini panel, batería y 3 bombillos LED. Perfecto para zonas sin red eléctrica.", ahorro: 15000, imagen: "https://via.placeholder.com/300x200?text=Kit+Iluminacion+Solar" },
+    { id: 19, nombre: "Cargador Solar Powerbank 20000mAh", precio: 95000, categoria: "solar", descripcion: "Carga tu celular gratis con la luz del sol. Resistente al agua y golpes.", ahorro: 4500, imagen: "https://via.placeholder.com/300x200?text=Powerbank+Solar" },
+    { id: 20, nombre: "Calentador de Agua Solar 150L", precio: 1850000, categoria: "solar", descripcion: "Reemplaza tu calentador eléctrico o a gas. Aprovecha el calor del sol para toda la familia.", ahorro: 95000, imagen: "https://via.placeholder.com/300x200?text=Calentador+Solar" },
+    { id: 21, nombre: "Ventilador Solar Recargable", precio: 250000, categoria: "solar", descripcion: "Se carga de día con su propio panel y funciona toda la noche de forma autónoma.", ahorro: 14000, imagen: "https://via.placeholder.com/300x200?text=Ventilador+Solar" },
+
+    // --- DOMÓTICA (NUEVO) ---
+    { id: 22, nombre: "Enchufe Inteligente WiFi", precio: 45000, categoria: "domotica", descripcion: "Corta el paso de energía por completo evitando el consumo fantasma de tus equipos.", ahorro: 5800, imagen: "https://via.placeholder.com/300x200?text=Enchufe+WiFi" },
+    { id: 23, nombre: "Sensor de Movimiento", precio: 35000, categoria: "domotica", descripcion: "Enciende y apaga las luces automáticamente solo cuando hay alguien en la habitación.", ahorro: 6500, imagen: "https://via.placeholder.com/300x200?text=Sensor+Movimiento" },
+    { id: 24, nombre: "Regleta Multitoma Smart", precio: 95000, categoria: "domotica", descripcion: "Programa horarios de apagado para tu centro de entretenimiento o computadora.", ahorro: 12000, imagen: "https://via.placeholder.com/300x200?text=Regleta+Smart" },
+    { id: 25, nombre: "Monitor de Consumo Eléctrico", precio: 120000, categoria: "domotica", descripcion: "Mide en tiempo real cuánta energía gastas para identificar fugas en tu hogar.", ahorro: 15000, imagen: "https://via.placeholder.com/300x200?text=Monitor+Consumo" },
+    { id: 26, nombre: "Interruptor Táctil WiFi", precio: 65000, categoria: "domotica", descripcion: "Automatiza la iluminación de toda tu casa desde el celular para no dejar luces encendidas.", ahorro: 7200, imagen: "https://via.placeholder.com/300x200?text=Interruptor+WiFi" },
+
+    // --- COCINA EFICIENTE (NUEVO) ---
+    { id: 27, nombre: "Estufa de Inducción 1 Puesto", precio: 180000, categoria: "cocina", descripcion: "Calienta directamente la olla mediante magnetismo. Mucho más rápida que la resistencia eléctrica.", ahorro: 22000, imagen: "https://via.placeholder.com/300x200?text=Estufa+Induccion" },
+    { id: 28, nombre: "Olla Multiusos Eléctrica", precio: 250000, categoria: "cocina", descripcion: "Cocina a presión en la mitad del tiempo, sellando el calor y reduciendo el consumo.", ahorro: 18000, imagen: "https://via.placeholder.com/300x200?text=Olla+Multiusos" },
+    { id: 29, nombre: "Hervidor de Agua Rápido", precio: 85000, categoria: "cocina", descripcion: "Lleva el agua a ebullición en 2 minutos y se apaga automáticamente.", ahorro: 9000, imagen: "https://via.placeholder.com/300x200?text=Hervidor+Agua" },
+    { id: 30, nombre: "Lavavajillas Compacto Eco", precio: 1600000, categoria: "cocina", descripcion: "Gasta menos agua y calienta eficientemente en ciclos cortos. Etiqueta energética A++.", ahorro: 35000, imagen: "https://via.placeholder.com/300x200?text=Lavavajillas+Eco" },
+    { id: 31, nombre: "Extractor de Olores Inverter", precio: 420000, categoria: "cocina", descripcion: "Motor de bajo consumo que elimina el humo de la cocina usando un 50% menos de energía.", ahorro: 8500, imagen: "https://via.placeholder.com/300x200?text=Extractor+Inverter" }
 ];
 
-// --- VARIABLE: el carrito. Se declara con let porque SI cambia ---
-// Empieza vacio: [] es un arreglo sin elementos.
-// Cada vez que se oprime "Agregar al carrito", se le agrega un producto
+// --- VARIABLE: el carrito ---
 let carrito = [];
 
 // --- FUNCIONES ---
-// Una funcion es un bloque de codigo con nombre.
-// Recibe datos (PARAMETROS, entre parentesis) y devuelve un resultado con return.
-// Se escribe una vez y se usa muchas veces: ahorroKwhMes(producto)
 
-// ahorroKwhMes: cuantos kWh ahorra un producto en un mes.
-// Recibe un producto (uno de los objetos del arreglo).
-// Ejemplo con el bombillo: (60 - 9) x 5 x 30 / 1000 = 7.65 kWh
+// ahorroKwhMes: calcula los kWh ahorrados al mes.
 function ahorroKwhMes(producto) {
-    // producto.wattsAntes - producto.wattsDespues = los vatios que se dejan de gastar (60 - 9 = 51 W)
-    // * producto.horasDia = por las horas de uso al dia (51 x 5 = 255 Wh al dia)
-    // * DIAS_MES          = por los 30 dias del mes (255 x 30 = 7650 Wh al mes)
-    // / 1000              = de Wh a kWh, que es como cobra la empresa de energia (7650 / 1000 = 7.65 kWh)
-    // return devuelve ese numero a quien llamo la funcion
-    return (producto.wattsAntes - producto.wattsDespues) * producto.horasDia * DIAS_MES / 1000;
+    return producto.ahorro / TARIFA;
 }
 
-// ahorroPesosMes: cuantos pesos ahorra un producto en un mes.
-// Ejemplo con el bombillo: 7.65 kWh x 950 = 7267.5 pesos
+// ahorroPesosMes: devuelve lo que ahorra el producto en pesos.
 function ahorroPesosMes(producto) {
-    // Llama la funcion anterior para saber los kWh (7.65)
-    // y los multiplica por lo que cuesta cada kWh (TARIFA = 950)
-    return ahorroKwhMes(producto) * TARIFA;
+    return producto.ahorro; 
 }
 
 // pesos: escribe un numero como plata colombiana.
-// Ejemplos: pesos(8900) -> "$8.900"   pesos(7267.5) -> "$7.268"
 function pesos(valor) {
-    // Math.round(valor)       = redondea sin decimales: 7267.5 -> 7268
-    // .toLocaleString("es-CO") = lo escribe como en Colombia, con punto de miles: 7268 -> "7.268"
-    // "$"                     = solo TEXTO: el signo de pesos, entre comillas
-    // +                       = PEGA los dos textos: "$" + "7.268" -> "$7.268"
-    // (Este "$" NO es el de ${ }: el de ${ } se usa dentro de comillas invertidas, mas abajo)
     return "$" + Math.round(valor).toLocaleString("es-CO");
 }
 
 // nombreCategoria: el nombre de la categoria para mostrar, con tilde y mayuscula.
-// En los datos se guarda sin tildes ("iluminacion") y en la pagina se muestra bonito ("Iluminación")
 function nombreCategoria(categoria) {
-    // CONDICIONAL: if = "si"; else if = "si no, si"; else = "si no"
-    // === compara si son EXACTAMENTE iguales (mismo texto, mismas minusculas)
-    // Si la categoria es "iluminacion"...
     if (categoria === "iluminacion") {
-        // ...devuelve el nombre bonito y la funcion termina aqui
         return "Iluminación";
-    // Si no, si es "electrodomesticos"...
     } else if (categoria === "electrodomesticos") {
         return "Electrodomésticos";
-    // Si no es ninguna de las dos anteriores...
-    } else {
-        // ...solo queda "solar"
+    } else if (categoria === "solar") {
         return "Energía solar";
+    } else if (categoria === "domotica") {
+        return "Domótica";
+    } else if (categoria === "cocina") {
+        return "Cocina Eficiente";
     }
+    return categoria;
 }
 
 // --- DOM: escribir en la pagina las tarjetas de los productos ---
-// DOM = la pagina vista desde JavaScript: cada etiqueta del HTML es un objeto
-// que JavaScript puede buscar, leer y cambiar
-// mostrarProductos: escribe en la pagina una tarjeta por cada producto.
-// categoria = "todas" o el nombre de una categoria, segun el boton de filtro que se oprimio
 function mostrarProductos(categoria) {
-    // document.querySelector("#productos") busca en la pagina el elemento con id="productos"
-    // (el <div id="productos"> vacio de catalogo.html) y lo guarda en la constante contenedor
     const contenedor = document.querySelector("#productos");
-    // innerHTML = el HTML que hay dentro del elemento. "" = nada: lo vacia,
-    // para no repetir tarjetas si la funcion se llama otra vez
     contenedor.innerHTML = "";
 
-    // BUCLE for...of: repite el bloque { } una vez por cada elemento del arreglo.
-    // En cada vuelta, producto es un producto distinto: 1.a vuelta el bombillo, 2.a el panel...
     for (const producto of productos) {
-        // Si se eligio una categoria (no "todas") Y el producto es de OTRA categoria...
-        // !== significa "distinto de"; && significa "y" (las dos cosas deben cumplirse)
-        // Ejemplo: categoria = "solar" y producto.categoria = "iluminacion" -> se cumple
         if (categoria !== "todas" && producto.categoria !== categoria) {
-            // ...continue salta a la siguiente vuelta del bucle: este producto no se muestra
             continue;
         }
-        // Agrega la tarjeta de este producto al contenedor.
-        // += agrega al final de lo que ya habia (sin += se borrarian las tarjetas anteriores)
-        // El texto va entre comillas invertidas ` ` (TEMPLATE STRING):
-        // permite varias lineas y meter valores con ${ }. Ejemplo: ${producto.nombre} -> Bombillo LED 9 W
-        // Lo que se mete en cada ${ }:
-        //   nombreCategoria(producto.categoria)   -> "Iluminación"
-        //   producto.nombre                       -> "Bombillo LED 9 W"
-        //   producto.wattsAntes                   -> 60
-        //   ahorroKwhMes(producto).toFixed(1)     -> "7.7" (toFixed(1) = con 1 decimal: 7.65 -> "7.7")
-        //   pesos(producto.precio)                -> "$8.900"
-        //   pesos(ahorroPesosMes(producto))       -> "$7.268"
-        //   producto.id (en data-id del boton)    -> 1: asi el boton sabe de que producto es
+        
         contenedor.innerHTML += `
-            <article class="tarjeta">
+            <article class="tarjeta d-flex flex-column h-100">
+                <img src="${producto.imagen}" alt="${producto.nombre}" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
                 <span class="categoria">${nombreCategoria(producto.categoria)}</span>
-                <h3>${producto.nombre}</h3>
-                <p>Reemplaza un equipo de ${producto.wattsAntes} W.
-                   Ahorra <span class="ahorro">${ahorroKwhMes(producto).toFixed(1)} kWh</span> al mes.</p>
-                <p class="precio">${pesos(producto.precio)}</p>
-                <p>Ahorro al mes: <span class="ahorro">${pesos(ahorroPesosMes(producto))}</span></p>
-                <button class="btn btn-primary btn-sm" data-id="${producto.id}">Agregar al carrito</button>
+                <h3 class="fs-5">${producto.nombre}</h3>
+                <p style="font-size: 0.9em; color: #555; min-height: 48px;">${producto.descripcion}</p>
+                <p class="mb-1">Ahorra <span class="ahorro text-success fw-bold">${ahorroKwhMes(producto).toFixed(1)} kWh</span> al mes.</p>
+                <p class="precio fw-bold fs-4 mb-1">${pesos(producto.precio)}</p>
+                <p class="mb-3 text-muted" style="font-size: 0.85em;">Ahorro en pesos: <span class="ahorro">${pesos(ahorroPesosMes(producto))}</span></p>
+                <button class="btn btn-primary btn-sm w-100 mt-auto" data-id="${producto.id}">Agregar al carrito</button>
             </article>`;
     }
 }
 
 // --- El carrito ---
-
-// agregarAlCarrito: agrega al carrito el producto que tiene ese id.
-// Ejemplo: agregarAlCarrito(1) agrega el bombillo
 function agregarAlCarrito(id) {
-    // Recorre todos los productos, uno por uno...
     for (const producto of productos) {
-        // ...y cuando encuentra el que tiene ese id (=== compara: 1 === 1)...
         if (producto.id === id) {
-            // ...lo agrega al final del arreglo carrito. push = "empujar al final"
             carrito.push(producto);
         }
     }
-    // Vuelve a dibujar el carrito, ya con el producto nuevo
     mostrarCarrito();
 }
 
-// mostrarCarrito: dibuja el carrito: la lista, el total y el ahorro.
-// Se llama cada vez que el carrito cambia (al agregar o al vaciar)
 function mostrarCarrito() {
-    // Busca la lista <ul id="lista-carrito"> del carrito
     const lista = document.querySelector("#lista-carrito");
-    // La vacia, para escribirla de nuevo completa (si no, los productos se repetirian)
     lista.innerHTML = "";
-    // ACUMULADORES: variables que empiezan en 0 y van sumando en el bucle.
-    // let, porque su valor cambia en cada vuelta
+    
     let total = 0;
     let ahorroMes = 0;
 
-    // Recorre los productos que hay en el carrito
     for (const producto of carrito) {
-        // Agrega a la lista una linea <li> con el nombre y el precio.
-        // Ejemplo: <li>Bombillo LED 9 W: $8.900</li>
-        lista.innerHTML += `<li>${producto.nombre}: ${pesos(producto.precio)}</li>`;
-        // Suma el precio al total. total += precio es lo mismo que total = total + precio
-        // Ejemplo: 0 + 1200000 = 1200000; luego 1200000 + 8900 = 1208900...
+        lista.innerHTML += `
+            <li class="mb-2 pb-2 border-bottom">
+                <div class="d-flex justify-content-between">
+                    <span style="font-size: 0.9em;">${producto.nombre}</span>
+                    <strong style="font-size: 0.9em;">${pesos(producto.precio)}</strong>
+                </div>
+            </li>`;
         total += producto.precio;
-        // Suma lo que ahorra este producto al mes
         ahorroMes += ahorroPesosMes(producto);
     }
 
-    // Escribe el total en el parrafo <p id="total">.
-    // textContent = el texto que se ve dentro del elemento. Ejemplo: "Total: $1.217.800"
     document.querySelector("#total").textContent = "Total: " + pesos(total);
 
-    // .length = cuantos elementos tiene el arreglo. Si es 0, el carrito esta vacio
+    const badgeCarrito = document.querySelector("#contador-carrito");
+    if(badgeCarrito) {
+        badgeCarrito.textContent = carrito.length;
+    }
+
     if (carrito.length === 0) {
-        // Carrito vacio: un mensaje en el parrafo <p id="ahorro">
         document.querySelector("#ahorro").textContent = "El carrito está vacío.";
     } else {
-        // En cuantos meses el ahorro paga la compra: el total dividido el ahorro de cada mes.
-        // Ejemplo: 1217800 / 64410 = 18.9 meses
-        // Math.ceil redondea HACIA ARRIBA: 18.9 -> 19 (con 18 meses todavia no alcanza)
         const meses = Math.ceil(total / ahorroMes);
-        // Escribe el ahorro y los meses en <p id="ahorro">, con un template string.
-        // Ejemplo: "Ahorra $64.410 al mes: la compra se paga sola en 19 meses."
         document.querySelector("#ahorro").textContent =
             `Ahorra ${pesos(ahorroMes)} al mes: la compra se paga sola en ${meses} meses.`;
     }
 }
 
 // --- EVENTOS: el programa reacciona a lo que hace el usuario ---
-
-// querySelectorAll busca TODOS los elementos con la clase .filtro (los 4 botones de filtro)
-// y los guarda en botonesFiltro (una lista)
 const botonesFiltro = document.querySelectorAll(".filtro");
-// Recorre los 4 botones...
 for (const boton of botonesFiltro) {
-    // ...y a cada uno le pone a ESCUCHAR el evento "click".
-    // addEventListener("click", funcion) = cuando le hagan clic, ejecuta esta funcion
     boton.addEventListener("click", function () {
-        // Recorre otra vez los 4 botones...
         for (const otro of botonesFiltro) {
-            // ...y les quita la clase "activo" a todos (classList = las clases del elemento)
             otro.classList.remove("activo");
         }
-        // Le pone la clase "activo" solo al boton que se oprimio: el CSS lo pinta de verde
         boton.classList.add("activo");
-        // Vuelve a dibujar los productos, solo los de la categoria del boton.
-        // dataset.categoria lee el atributo data-categoria del HTML.
-        // Ejemplo: <button data-categoria="solar"> -> "solar"
         mostrarProductos(boton.dataset.categoria);
     });
 }
 
-// Clic en un boton "Agregar al carrito".
-// Se escucha en el CONTENEDOR #productos y no en cada boton, porque los botones
-// los crea JavaScript y se borran y se vuelven a crear cada vez que se filtra
 document.querySelector("#productos").addEventListener("click", function (evento) {
-    // evento = la informacion del clic. evento.target = el elemento exacto donde se hizo clic
-    // (puede ser un boton, un titulo, un precio...).
-    // Si tiene data-id, es un boton "Agregar al carrito"; si no, se hizo clic en otra parte
     if (evento.target.dataset.id) {
-        // dataset.id es TEXTO ("1"). Number lo convierte en numero (1),
-        // para que producto.id === id funcione (1 === "1" daria false)
         agregarAlCarrito(Number(evento.target.dataset.id));
     }
 });
 
-// Clic en el boton "Vaciar carrito" (<button id="vaciar">)
 document.querySelector("#vaciar").addEventListener("click", function () {
-    // El carrito vuelve a ser un arreglo vacio
     carrito = [];
-    // Y se vuelve a dibujar: sale "El carrito está vacío."
     mostrarCarrito();
 });
 
 // --- Al cargar la pagina ---
-// Llama las funciones apenas se abre la pagina:
-// muestra todos los productos ("todas") y el carrito vacio
 mostrarProductos("todas");
 mostrarCarrito();

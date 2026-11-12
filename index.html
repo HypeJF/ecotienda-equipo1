@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AhorraPlus, tus equipos de calidad</title>
+    <title>AhorraPlus | Tu alternativa económica</title>
     
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <!-- Google Fonts (Respaldo para Oswald) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    
+    <!-- Tu hoja de estilos -->
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body class="container-fluid px-4 py-3">
-    <header class="encabezado">
-        <h1>AhorraPlus</h1>
-        <p>Su alternativa económica para estos tiempos de crisis.</p>
-        <nav class="menu">
-            <a href="index.html">Inicio</a>
+<body class="container py-3">
+    <header class="encabezado d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <h1 class="mb-1">AhorraPlus</h1>
+            <p class="mb-0">Su alternativa económica para estos tiempos de crisis.</p>
+        </div>
+        <nav class="menu d-flex align-items-center gap-3">
+            <a href="index.html" class="activo">Inicio</a>
             <a href="catalogo.html">Catálogo</a>
             <a href="nosotros.html">Nosotros</a>
             <a href="contacto.html">Contacto</a>
@@ -24,9 +31,8 @@
     </header>
 
     <main>
-
         <section id="intro">
-            <h2>Importancia de ahorrar energia</h2>
+            <h2>Importancia de ahorrar energía</h2>
             <p>
                 Durante 2026, el fenómeno de El Niño ha golpeado fuertemente los niveles de los embalses en Colombia, disparando las tarifas. El precio base de la energía en bolsa inició en <strong>212 COP/kWh</strong> en enero, escaló a <strong>942 COP/kWh</strong> para agosto, y en este mes de noviembre ya alcanza los <strong>1.150 COP/kWh</strong>.
             </p>
@@ -36,25 +42,43 @@
         </section>
 
         <section id="zona-tarjetas">
-            <h2>Ventajas de un equipo eficiente</h2>
+            <h2>Beneficios de actualizar tus equipos</h2>
             <div class="tarjetas">
+                <!-- Tarjeta 1 -->
                 <article class="tarjeta">
-                    <h3>Paga menos</h3>
-                    <p>Un bombillo LED de 9 W alumbra igual que uno de 60 W y gasta 85 % menos.</p>
+                    <h3>Tecnología Inverter</h3>
+                    <p>Motores que ajustan su velocidad automáticamente, evitando picos de consumo y ahorrando hasta un 40% de energía.</p>
                 </article>
+                <!-- Tarjeta 2 -->
                 <article class="tarjeta">
-                    <h3>Recupera la inversión</h3>
-                    <p>Con lo que ahorra cada mes, el equipo se paga solo en pocos meses.</p>
+                    <h3>Eficiencia Certificada</h3>
+                    <p>Todos nuestros productos cuentan con etiqueta energética A o superior para garantizar el menor gasto eléctrico.</p>
                 </article>
+                <!-- Tarjeta 3 -->
                 <article class="tarjeta">
-                    <h3>Cuida los embalses</h3>
-                    <p>Menos demanda en la hora pico significa menos plantas térmicas encendidas.</p>
+                    <h3>Apoyo al País</h3>
+                    <p>Al consumir menos energía, ayudas a evitar racionamientos durante las fuertes sequías de El Niño.</p>
+                </article>
+                <!-- Tarjeta 4 -->
+                <article class="tarjeta">
+                    <h3>Impacto Ambiental</h3>
+                    <p>Menor demanda significa menor uso de plantas térmicas, reduciendo tu huella de carbono diaria.</p>
+                </article>
+                <!-- Tarjeta 5 -->
+                <article class="tarjeta">
+                    <h3>Mayor Durabilidad</h3>
+                    <p>La tecnología moderna reduce el desgaste de los motores, otorgando una vida útil mucho más larga a tus equipos.</p>
+                </article>
+                <!-- Tarjeta 6 -->
+                <article class="tarjeta">
+                    <h3>Retorno Garantizado</h3>
+                    <p>La diferencia de precio frente a un equipo tradicional la recuperas rápidamente mes a mes en tu factura de luz.</p>
                 </article>
             </div>
         </section>
     </main>
 
-    <footer class="pie">
+    <footer class="pie text-center">
         <p>Fuente de los precios: <a href="https://www.xm.com.co" target="_blank">XM</a>. Los productos y sus precios son de ejemplo.</p>
         <p>Ingeniería Web I · IU Digital de Antioquia · 2026-2</p>
     </footer>
