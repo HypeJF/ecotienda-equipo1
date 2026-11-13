@@ -1,5 +1,5 @@
-:root {
-  /* pseudoclase que selecciona todo de raiz (html) */
+
+a :root {
   --color-principal: #122494;
   --color-acento: #0b4d8a;
   --color-suave: #DDEBDD;
@@ -8,37 +8,32 @@
   --color-blanco: #FFFFFF;
 }
 
-/* importando una fuente de forma local*/
 @font-face {
-  font-family: 'Oswald';
-  src: url('../fonts/Oswald/Oswald-VariableFont_wght.ttf') format('truetype');
-  font-weight: 200 700; 
+  font-family: "Oswald";
+  src: url("../fonts/Oswald/Oswald-VariableFont_wght.ttf") format("truetype");
+  font-weight: 200 700;
   font-style: normal;
 }
-
-/* seccion del body o cuerpo, selector de etiqueta*/
+/*selector de etiqueta */
 body {
   font-family: "Oswald", Arial, sans-serif;
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
-
-  /* imagen personalizada para que se vea mejor */
-  background-image: url('../images/fondo.jpg');
+  background-color: #F4F7F2;
+  color: #1F2933;
+  background-image: url("../images/fondo.jpg");
   background-repeat: repeat;
   background-size: auto;
 }
 
-/* seccion de los parrafos, selector de etiqueta agrupados */
+/*señector de etiquetas agrupadas*/
 h1, h2, h3 {
-  color: var(--color-principal);
+  color: #122494;
   font-weight: 700;
 }
 
-/* Selector de clase (lleva punto), de la cabecera*/
+/*selector de clase */
 .encabezado {
-  background-color: var(--color-principal);
-  /*imagen para que se vea mas bonito */
-  background-image: url('../images/encabezado_fondo.jpg');
+  background-color: #122494;
+  background-image: url("../images/encabezado_fondo.jpg");
   background-repeat: repeat;
   background-size: cover;
   margin-bottom: 24px;
@@ -47,28 +42,26 @@ h1, h2, h3 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
-
-/* selector de etiqueta descendiente de clase encabezado*/
 .encabezado h1 {
-  color: var(--color-blanco);
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  color: #FFFFFF;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-
 .encabezado p {
-  color: var(--color-suave);
+  color: #DDEBDD;
   font-size: 1.1rem;
 }
 
-/* selector de id, para una sección especifica*/
+/*selector de id */
 #intro {
-  background-color: var(--color-blanco);
+  background-color: #FFFFFF;
   padding: 24px;
   margin-bottom: 32px;
-  border: 1px solid var(--color-acento);
+  border: 1px solid #0b4d8a;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/*selector hijo de id */
 #intro > h2 {
   text-align: center;
   margin-bottom: 16px;
@@ -81,30 +74,27 @@ h1, h2, h3 {
   justify-content: center;
   margin-top: 16px;
 }
-
-/* selector de hijo, una etiqueta especifica dentro de una clase */
 .menu > a {
   background-color: rgba(18, 20, 46, 0.8);
   font-style: italic;
-  color: var(--color-blanco);
+  color: #FFFFFF;
   text-decoration: none;
   padding: 8px 20px;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
   transition: all 0.3s ease;
-  /* transicion para cambiar ligeramente el color al pasar el mouse*/
 }
 
-/* selector de pseudoclase en selector de hijo, a su vez, en selector de clase, la recolorea al pasar el cursor*/
+/*selector de pseudo-clase :hover y :activo*/
 .menu > a:hover, .menu > a.activo {
-  background-color: var(--color-blanco);
-  color: var(--color-principal);
-  border-color: var(--color-principal);
+  background-color: #FFFFFF;
+  color: #122494;
+  border-color: #122494;
 }
 
-/* selector de pseudoclase y etc, lo pinta cuando haces clic*/
+/*selector de pseudo-clase :focus para accesibilidad*/
 .menu > a:focus {
-  outline: 3px solid var(--color-acento);
+  outline: 3px solid #0b4d8a;
   outline-offset: 2px;
 }
 
@@ -120,10 +110,9 @@ h1, h2, h3 {
   margin-bottom: 32px;
 }
 
-/* transicion presente para que crezcan las tarjetas un poco*/
 .tarjeta {
-  background-color: var(--color-blanco);
-  border: 1px solid var(--color-suave);
+  background-color: #FFFFFF;
+  border: 1px solid #DDEBDD;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -131,8 +120,6 @@ h1, h2, h3 {
   display: flex;
   flex-direction: column;
 }
-
-/* modificacion del boton Carrito */
 .tarjeta .btn-primary {
   margin: 16px auto 0;
   padding: 12px 24px;
@@ -140,27 +127,24 @@ h1, h2, h3 {
   font-weight: 700;
   width: 100%;
 }
-
 .tarjeta:hover {
   transform: translateY(-6px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* selector de pseudo-clase: selecciona el primer hijo de la clase */
+/*selector de pseudo-clase :first-child*/
 .tarjeta:first-child {
-  border: 2px solid var(--color-acento);
+  border: 2px solid #0b4d8a;
 }
-
-/* selec. de pseudoclase: selecciona el hijo n (cualquiera que no sea el primero)*/
+/*selector de pseudo-clase :nth-child()*/
 .tarjeta p:nth-child(2) {
   min-height: 48px;
   flex-grow: 1;
 }
 
-/* --- CLASES DEL CATÁLOGO --- */
 .precio {
   text-align: center;
-  color: var(--color-principal);
+  color: #122494;
   font-size: 1.6rem;
   font-weight: 700;
 }
@@ -176,18 +160,9 @@ h1, h2, h3 {
 }
 
 .ahorro {
-  color: var(--color-acento);
+  color: #0b4d8a;
   font-weight: 700;
   margin-bottom: 12px;
-}
-
-/* NUEVO: Panel para acomodar filtros a la izquierda y carrito a la derecha */
-.panel-superior {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-  margin-bottom: 32px;
 }
 
 .filtros {
@@ -206,70 +181,59 @@ h1, h2, h3 {
   border-radius: 999px;
   transition: background-color 0.3s;
 }
-
 .filtro:hover, .filtro.activo {
   background-color: #18142e;
   color: white;
 }
 
-/* El carrito se queda fijo arriba a la derecha */
-#carrito {
-  background-color: var(--color-blanco);
-  border: 2px solid var(--color-principal);
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  width: 100%;
-  max-width: 320px;
-}
-
-.productos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-/* selector de atributo, basicamente agrupa todos los _blank (solo hay uno)*/
+/*selector de atributo */
 a[target="_blank"] {
-  color: var(--color-acento);
-  font-weight: 700;
-  text-decoration: underline;
+  position: relative;
 }
 
 .pie {
   margin-top: 32px;
   padding-top: 16px;
-  border-top: 2px solid var(--color-suave);
+  border-top: 2px solid #DDEBDD;
   color: #52606D;
   font-size: 0.95rem;
 }
 
 .btn-primary {
-  --bs-btn-bg: var(--color-principal);
-  --bs-btn-border-color: var(--color-principal);
-  --bs-btn-hover-bg: var(--color-acento);
-  --bs-btn-hover-border-color: var(--color-acento);
+  --bs-btn-bg: #122494;
+  --bs-btn-border-color: #122494;
+  --bs-btn-hover-bg: #0b4d8a;
+  --bs-btn-hover-border-color: #0b4d8a;
   --bs-btn-hover-color: #0d0d0e;
 }
 
-/* Media Queries */
-@media (max-width: 992px) {
-  .tarjetas { grid-template-columns: repeat(2, 1fr); }
+.form-control {
+  border: 2px solid #DDEBDD;
+  border-radius: 8px;
+}
+.form-control:focus {
+  border-color: #0b4d8a;
+  box-shadow: 0 0 0 0.25rem rgba(11, 77, 138, 0.25);
 }
 
-@media (max-width: 768px) {
-  /* En tablets o móviles, el carrito baja debajo de los filtros para no aplastarse */
-  .panel-superior {
+/*media queries para diseño responsivo */
+@media (max-width: 992px) {
+  .tarjetas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 576px) {
+  .encabezado {
+    padding: 24px 16px;
+    border-radius: 8px;
+  }
+  .encabezado h1 {
+    font-size: 1.8rem;
+  }
+  .menu {
     flex-direction: column;
   }
-  #carrito {
-    max-width: 100%;
+  .tarjetas {
+    grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 576px) {
-  .encabezado { padding: 24px 16px; border-radius: 8px; }
-  .encabezado h1 { font-size: 1.8rem; }
-  .menu { flex-direction: column; }
-  .tarjetas { grid-template-columns: 1fr; }
-}
+}/*# sourceMappingURL=estilos.css.map */
